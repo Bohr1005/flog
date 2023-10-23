@@ -1,0 +1,2 @@
+build --action_env=CC=/usr/bin/gcc --cxxopt=-std=c++20 --cxxopt=-DCACHE_LINE=64
+build --action_env=CXX=/usr/bin/g++ --cxxopt=-std=c++20 --cxxopt=-DCACHE_LINE=64

@@ -2,6 +2,7 @@
 #include "appender.hpp"
 #include "channel.hpp"
 #include "log.hpp"
+#include <atomic>
 #include <memory>
 
 namespace flog {
@@ -34,9 +35,9 @@ private:
 private:
   flog::level _lvl;
   channel<log> _channel;
-  bool _active{false};
 
   std::unique_ptr<appender> _appender;
+  std::atomic<bool> _active{false};
 };
 } // namespace flog
 

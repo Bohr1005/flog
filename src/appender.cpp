@@ -1,11 +1,5 @@
 #include "appender.hpp"
 #include "any.hpp"
-#include <bits/types/FILE.h>
-#include <cstdint>
-
-#include <cstdio>
-#include <string_view>
-#include <unistd.h>
 
 namespace flog {
 appender::appender(FILE *file) : _file(file) {}

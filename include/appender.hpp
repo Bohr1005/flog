@@ -1,13 +1,6 @@
 #pragma once
 #include "any.hpp"
 #include "log.hpp"
-#include <bits/types/FILE.h>
-#include <cstddef>
-#include <cstdint>
-#include <cstdio>
-#include <ostream>
-#include <string>
-#include <string_view>
 
 namespace flog {
 class appender {

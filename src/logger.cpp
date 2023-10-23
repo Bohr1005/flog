@@ -1,5 +1,6 @@
 #include "logger.hpp"
 #include "fatal.hpp"
+#include <atomic>
 #include <filesystem>
 #include <thread>
 
@@ -40,12 +41,15 @@ void logger::open_file(std::string_view filename) {
 
 bool logger::enable_log(flog::level lvl) const { return lvl >= _lvl; }
 void logger::init_worker() {
-  _active = true;
+  _active.store(true, std::memory_order_relaxed);
   std::thread worker{[&]() {
-    while (_active) {
+    while (1) {
       using namespace std::chrono_literals;
 
       std::this_thread::sleep_for(1s);
+      if (!_active.load(std::memory_order_relaxed)) {
+        break;
+      }
       while (auto log = _channel.recv()) {
         _appender->on_log(*log);
       }
@@ -56,7 +60,7 @@ void logger::init_worker() {
 }
 
 void logger::stop() {
-  _active = false;
+  _active.store(false, std::memory_order_relaxed);
   while (auto log = _channel.recv()) {
     _appender->on_log(*log);
   }

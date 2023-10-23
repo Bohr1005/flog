@@ -39,7 +39,8 @@ static auto benchmark_file(uint32_t n, ARGS &&...args) {
 }
 
 int main() {
-  auto diff = benchmark_file(1000000, "test");
+  auto diff = benchmark_file(
+      1000000, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
   std::cout << "benchmark file elapse:" << diff.count() << " "
             << "avg:" << 1000000 / diff.count() << "/sec" << std::endl;
 }

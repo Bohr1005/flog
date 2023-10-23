@@ -23,5 +23,5 @@ write 1,000,000 items of size 50 bytes each to file
 
 ```shell
 bazel run bm_logger --cxxopt="-O3"
-benchmark file elapse:0.0588658 avg:1.69878e+07/sec
+benchmark file elapse:0.05896 avg:1.69607e+07/sec
 ```

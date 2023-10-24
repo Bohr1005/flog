@@ -1,9 +1,7 @@
 #include "date.hpp"
-
+#include "time_offset.hpp"
 #include <iomanip>
 #include <tuple>
-
-#include "time_offset.hpp"
 
 namespace flog {
 

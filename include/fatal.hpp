@@ -1,10 +1,7 @@
 #pragma once
 #include "datetime.hpp"
 #include "fmt.hpp"
-#include <cstdint>
-#include <exception>
 #include <sstream>
-#include <string>
 
 namespace flog {
 class fatal_error : public std::exception {

@@ -1,11 +1,9 @@
 #include "daytime.hpp"
-
+#include "time_offset.hpp"
 #include <iomanip>
 #include <sstream>
 
-#include "time_offset.hpp"
 namespace flog {
-
 daytime::daytime(rep val) : std::chrono::nanoseconds(val) {}
 daytime::daytime(std::chrono::nanoseconds const &val)
     : std::chrono::nanoseconds(val) {}

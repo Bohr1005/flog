@@ -1,5 +1,4 @@
 #include "datetime.hpp"
-
 #include "time_offset.hpp"
 
 namespace flog {

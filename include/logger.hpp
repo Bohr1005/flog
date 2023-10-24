@@ -2,7 +2,6 @@
 #include "appender.hpp"
 #include "channel.hpp"
 #include "log.hpp"
-#include <atomic>
 #include <memory>
 
 namespace flog {

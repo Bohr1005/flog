@@ -1,6 +1,5 @@
 #include "logger.hpp"
 #include "fatal.hpp"
-#include <atomic>
 #include <filesystem>
 #include <thread>
 

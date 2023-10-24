@@ -1,9 +1,6 @@
 #pragma once
 
 #include <chrono>
-#include <cstring>
-#include <iomanip>
-#include <stdexcept>
 #include <string>
 
 namespace flog {

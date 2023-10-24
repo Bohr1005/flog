@@ -6,11 +6,9 @@
 #include <memory>
 #include <ratio>
 
-std::unique_ptr<flog::logger> _g_logger;
-
 template <typename... ARGS>
 static auto benchmark_cout(uint32_t n, ARGS &&...args) {
-  _g_logger = std::make_unique<flog::logger>(flog::level::INFO, n);
+  flog::init_logger(flog::level::INFO, n);
   auto start = std::chrono::steady_clock::now();
 
   for (auto i = 0L; i < n; ++i) {
@@ -25,7 +23,7 @@ static auto benchmark_cout(uint32_t n, ARGS &&...args) {
 
 template <typename... ARGS>
 static auto benchmark_file(uint32_t n, ARGS &&...args) {
-  _g_logger = std::make_unique<flog::logger>(flog::level::INFO, "test", n);
+  flog::init_logger(flog::level::INFO, "test", n);
   auto start = std::chrono::steady_clock::now();
 
   for (auto i = 0L; i < n; ++i) {

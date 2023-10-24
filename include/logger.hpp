@@ -3,6 +3,7 @@
 #include "channel.hpp"
 #include "log.hpp"
 #include <memory>
+#include <utility>
 
 namespace flog {
 class logger {
@@ -38,14 +39,20 @@ private:
   std::unique_ptr<appender> _appender;
   std::atomic<bool> _active{false};
 };
-} // namespace flog
+
+static std::unique_ptr<flog::logger> _g_logger;
+
+template <typename... ARGS> auto init_logger(ARGS &&...args) {
+  _g_logger = std::make_unique<flog::logger>(std::forward<ARGS>(args)...);
+}
 
 template <typename... ARGS> auto log(ARGS &&...args) {
-  extern std::unique_ptr<flog::logger> _g_logger;
   _g_logger->log_msg(std::forward<ARGS>(args)...);
 }
 
-#define DEBUG(...) log(flog::level::DEBUG, __FILE__, __LINE__, __VA_ARGS__)
-#define INFO(...) log(flog::level::INFO, __FILE__, __LINE__, __VA_ARGS__)
-#define WARN(...) log(flog::level::WARN, __FILE__, __LINE__, __VA_ARGS__)
-#define ERROR(...) log(flog::level::ERROR, __FILE__, __LINE__, __VA_ARGS__)
+} // namespace flog
+
+#define DEBUG(...) flog::log(flog::level::DEBUG, __FILE__, __LINE__, __VA_ARGS__)
+#define INFO(...) flog::log(flog::level::INFO, __FILE__, __LINE__, __VA_ARGS__)
+#define WARN(...) flog::log(flog::level::WARN, __FILE__, __LINE__, __VA_ARGS__)
+#define ERROR(...) flog::log(flog::level::ERROR, __FILE__, __LINE__, __VA_ARGS__)

@@ -1,6 +1,27 @@
 ### flog
 flog(flash logger) is a logging library I use in my high-frequency trading system, it's a lightweight and high-performance logging library that supports asynchronous logging to the console or files.I separated it from my high-frequency trading system and partially open-sourced
 
+### how to use
+```c++
+#include "logger.hpp"
+
+int main(){
+    flog::init(flog::level::INFO, 1024)  // asynchronous logging to console
+
+    //flog::init(flog::level::INFO,"file", 1024) // asynchronous logging to ./log/file.log
+
+    INFO("hello world");
+}
+
+```
+The logger has two constructors:
+
+```c++
+explicit logger(flog::level, uint32_t = 1024);
+logger(flog::level, std::string_view, uint32_t = 1024);
+```
+The first constructor outputs logs to the console, while the second constructor outputs logs to a specified file. 1024 represents the maximum number of logs that can be stored before the logs are refreshed.
+
 ### why is the performance excellent?
 + Using a lock-free circular queue to store logs, and ensuring that the elements in the queue are arranged continuously in memory.
 

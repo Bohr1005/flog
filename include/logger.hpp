@@ -52,7 +52,9 @@ template <typename... ARGS> auto log(ARGS &&...args) {
 
 } // namespace flog
 
-#define DEBUG(...) flog::log(flog::level::DEBUG, __FILE__, __LINE__, __VA_ARGS__)
+#define DEBUG(...)                                                             \
+  flog::log(flog::level::DEBUG, __FILE__, __LINE__, __VA_ARGS__)
 #define INFO(...) flog::log(flog::level::INFO, __FILE__, __LINE__, __VA_ARGS__)
 #define WARN(...) flog::log(flog::level::WARN, __FILE__, __LINE__, __VA_ARGS__)
-#define ERROR(...) flog::log(flog::level::ERROR, __FILE__, __LINE__, __VA_ARGS__)
+#define ERROR(...)                                                             \
+  flog::log(flog::level::ERROR, __FILE__, __LINE__, __VA_ARGS__)

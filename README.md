@@ -1,5 +1,5 @@
 ### flog
-flog(flash logger) is a logging library I use in my high-frequency trading system, it's a lightweight and high-performance logging library that supports asynchronous logging to the console or file. I separated it from my high-frequency trading system and partially open-sourced
+flog(flash logger) is a logging library I use in my high-frequency trading system, it's a lightweight and high-performance logging library that supports asynchronous logging to the console or files.I separated it from my high-frequency trading system and partially open-sourced
 
 ### how to use
 ```c++
@@ -10,7 +10,7 @@ int main(){
 
     //flog::init(flog::level::INFO,"file", 1024) // asynchronous logging to ./log/file.log
 
-    INFO("hello", "world");
+    INFO("hello world");
 }
 
 ```

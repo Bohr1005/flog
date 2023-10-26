@@ -9,8 +9,7 @@ int main(){
     flog::init(flog::level::INFO, 1024)  // asynchronous logging to console
 
     //flog::init(flog::level::INFO,"file", 1024) // asynchronous logging to ./log/file.log
-
-    INFO("hello world");
+    INFO("hello", "world");
 }
 
 ```

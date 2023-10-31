@@ -62,6 +62,7 @@ void logger::stop() {
   while (auto log = _channel.recv()) {
     _appender->on_log(*log);
   }
-  _appender->flush();
 };
+
+std::unique_ptr<flog::logger> _g_logger;
 } // namespace flog

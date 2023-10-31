@@ -23,7 +23,11 @@ void appender::on_log(const flog::log &log) {
 }
 void appender::flush() { std::fflush(_file); }
 
-appender::~appender() { std::fclose(_file); }
+appender::~appender() { 
+    flush();
+    std::fclose(_file);
+}
+
 template <> auto appender::write<bool>(bool const &v) {
   if (v) {
     std::fwrite(" True", 1, 5, _file);

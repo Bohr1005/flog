@@ -40,7 +40,7 @@ private:
   std::atomic<bool> _active{false};
 };
 
-static std::unique_ptr<flog::logger> _g_logger;
+extern std::unique_ptr<flog::logger> _g_logger;
 
 template <typename... ARGS> auto init_logger(ARGS &&...args) {
   _g_logger = std::make_unique<flog::logger>(std::forward<ARGS>(args)...);

@@ -47,7 +47,10 @@ template <> std::string_view any::get() const { return &_buf[0]; }
 template <> const char *any::get() const {
   return reinterpret_cast<const char *>(pointer);
 }
-template <> std::string any::get() const { return std::string(&_buf[0], 15); }
+template <> std::string any::get() const {
+  auto str = std::string(&_buf[0], 15);
+  return str.substr(0, str.find('\0'));
+}
 
 view::view(const char *buf)
     : _header((header *)buf), _capacity(_header->count) {}

@@ -51,7 +51,7 @@ public:
     auto t = &_storage[idx];
 
     _head.fetch_add(1, std::memory_order_release);
-    return &_storage[idx];
+    return t;
   }
 
 private:

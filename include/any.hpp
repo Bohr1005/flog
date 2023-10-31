@@ -40,7 +40,11 @@ public:
   any(double val) : _type(type_tag::double_type), double_value(val) {}
   any(const void *val) : _type(type_tag::pointer_type), pointer(val) {}
   any(std::string_view val) : _type(type_tag::string_type) {
-    std::memcpy(_buf, val.data(), std::min((int)val.size(), 15));
+    uint32_t len = val.size(); // NOLINT
+    std::memcpy(&_buf[0], val.data(), std::min(len, 15U));
+    if (len < 15) {
+      _buf[len] = '\0';
+    }
   }
 
   auto type() const { return _type; }
